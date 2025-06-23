@@ -38,6 +38,7 @@ function App() {
           <h2>{movie.name}</h2>
           <img src={movie.image} alt={movie.name} />
           <p>{movie.overview}</p>
+          
         </div>
       ))}
     </div>
