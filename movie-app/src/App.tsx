@@ -33,6 +33,7 @@ function App() {
 
   return (
     <div>
+      <input type="text"/>
       {defaultMovieList.map((movie) => (
         <div key={movie.id}>
           <h2>{movie.name}</h2>
