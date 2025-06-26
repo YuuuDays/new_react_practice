@@ -31,9 +31,14 @@ function App() {
     },
   ];
 
+  // 追加
+  var keyword = "";
+
+  // e はイベントオブジェクトで、e.target.value で入力された文字列を取得できる
   return (
     <div>
-      <input type="text"/>
+      <input type="text" onChange={(e) =>(keyword = e.target.value)}/>
+      <div>{keyword}</div>
       {defaultMovieList.map((movie) => (
         <div key={movie.id}>
           <h2>{movie.name}</h2>
