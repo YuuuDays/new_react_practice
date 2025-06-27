@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css'
 
 function App() {
@@ -32,12 +33,13 @@ function App() {
   ];
 
   // 追加
-  var keyword = "";
-
+  const[keyword,setKeyword] = useState("");
+  
+  
   // e はイベントオブジェクトで、e.target.value で入力された文字列を取得できる
   return (
     <div>
-      <input type="text" onChange={(e) =>(keyword = e.target.value)}/>
+      <input type="text" onChange={(e) =>setKeyword(e.target.value)}/>
       <div>{keyword}</div>
       {defaultMovieList.map((movie) => (
         <div key={movie.id}>
