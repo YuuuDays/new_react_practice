@@ -32,7 +32,7 @@ function App() {
     },
   ];
 
-  // 追加
+  // React(関数コンポーネント)ではuseStateで定義された状態(state)が変化するとコンポーネントが再レンダリングされる
   const[keyword,setKeyword] = useState("");
   
   
@@ -41,7 +41,10 @@ function App() {
     <div>
       <input type="text" onChange={(e) =>setKeyword(e.target.value)}/>
       <div>{keyword}</div>
-      {defaultMovieList.map((movie) => (
+
+      {defaultMovieList
+        .filter((movie) => movie.name.includes(keyword))
+        .map(movie =>(
         <div key={movie.id}>
           <h2>{movie.name}</h2>
           <img src={movie.image} alt={movie.name} />
