@@ -44,8 +44,8 @@ function App() {
     );
     const data = await response.json();
     console.log('★tyeofdata = ',typeof(data));
-    console.log('★data.resul = ',typeof(data.resul));
-    console.log(data.result);
+    console.log('★data.resul = ',typeof(data.resuls));
+    console.log(data.results);
 
     return data.result;
   }
