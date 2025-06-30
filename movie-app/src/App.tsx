@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import './App.css'
 
 function App() {
+
   //Jsのコードを書く
     const defaultMovieList = [
     {
@@ -31,10 +32,31 @@ function App() {
         "https://media.themoviedb.org/t/p/w300_and_h450_bestv2/oHaxzQXWSvIsctZfAYSW0tn54gQ.jpg",
     },
   ];
+  //追加
+  const fetchMovieList = async () =>{
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/popular?language=ja&page=1`,
+      {
+        headers:{
+          Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
+        },
+      }
+    );
+    const data = await response.json();
+    console.log('★tyeofdata = ',typeof(data));
+    console.log('★data.resul = ',typeof(data.resul));
+    console.log(data.result);
+
+    return data.result;
+  }
 
   // React(関数コンポーネント)ではuseStateで定義された状態(state)が変化するとコンポーネントが再レンダリングされる
   const[keyword,setKeyword] = useState("");
   
+  //追加
+  useEffect(() =>{
+    fetchMovieList();
+  },[]);
   
   // e はイベントオブジェクトで、e.target.value で入力された文字列を取得できる
   return (
