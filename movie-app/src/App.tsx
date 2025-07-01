@@ -43,6 +43,7 @@ function App() {
       }
     );
     const data = await response.json();
+    setMovieList(data.results);
     console.log('★tyeofdata = ',typeof(data));
     console.log('★data.resul = ',typeof(data.resuls));
     console.log(data.results);
@@ -52,6 +53,7 @@ function App() {
 
   // React(関数コンポーネント)ではuseStateで定義された状態(state)が変化するとコンポーネントが再レンダリングされる
   const[keyword,setKeyword] = useState("");
+  const[movieList, setMovieList] = useState([]);
   
   //第一引数に実行したい処理を含む関数、第二引数に依存配列を渡す
   useEffect(() =>{
@@ -62,15 +64,18 @@ function App() {
   // e はイベントオブジェクトで、e.target.value で入力された文字列を取得できる
   return (
     <div>
-      <input type="text" onChange={(e) =>setKeyword(e.target.value)}/>
       <div>{keyword}</div>
+      <input type="text" onChange={(e) =>setKeyword(e.target.value)}/>
 
-      {defaultMovieList
-        .filter((movie) => movie.name.includes(keyword))
-        .map(movie =>(
+      {movieList
+        .filter((movie) => movie.original_title.includes(keyword))
+        .map((movie) =>(
         <div key={movie.id}>
           <h2>{movie.name}</h2>
-          <img src={movie.image} alt={movie.name} />
+          <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.original_title}
+            />
           <p>{movie.overview}</p>
           
         </div>
