@@ -53,8 +53,9 @@ function App() {
   // React(関数コンポーネント)ではuseStateで定義された状態(state)が変化するとコンポーネントが再レンダリングされる
   const[keyword,setKeyword] = useState("");
   
-  //追加
+  //第一引数に実行したい処理を含む関数、第二引数に依存配列を渡す
   useEffect(() =>{
+    //実行させる処理
     fetchMovieList();
   },[]);
   
