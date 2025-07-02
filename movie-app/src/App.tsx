@@ -1,6 +1,32 @@
 import { useState,useEffect } from 'react';
 import './App.css'
 
+// 追加
+type Movie = {
+  id: string;
+  original_title: string;
+  poster_path: string;
+  overview: string;
+};
+
+// 追加
+type MovieJson = {
+  adult: boolean;
+  backdrop_path: string | null;
+  genre_ids: number[];
+  id: string;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string | null;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+};
+
 function App() {
 
   //Jsのコードを書く
@@ -43,7 +69,18 @@ function App() {
       }
     );
     const data = await response.json();
-    setMovieList(data.results);
+    // useStateに型を入れ込みます
+    // mapとはJavaScriptの配列に対して使えるメソッドです
+    setMovieList(
+      data.results.map((movie: Movie) => ({
+        id: movie.id,
+        original_title: movie.original_title,
+        poster_path: movie.poster_path,
+        overview: movie.overview,
+      }))
+    );
+  };
+
     console.log('★tyeofdata = ',typeof(data));
     console.log('★data.resul = ',typeof(data.resuls));
     console.log(data.results);
@@ -53,7 +90,7 @@ function App() {
 
   // React(関数コンポーネント)ではuseStateで定義された状態(state)が変化するとコンポーネントが再レンダリングされる
   const[keyword,setKeyword] = useState("");
-  const[movieList, setMovieList] = useState([]);
+  const[movieList, setMovieList] = useState<Movie[]>([]);
   
   //第一引数に実行したい処理を含む関数、第二引数に依存配列を渡す
   useEffect(() =>{
