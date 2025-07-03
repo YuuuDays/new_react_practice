@@ -79,8 +79,7 @@ function App() {
         overview: movie.overview,
       }))
     );
-  };
-
+  
     console.log('★tyeofdata = ',typeof(data));
     console.log('★data.resul = ',typeof(data.resuls));
     console.log(data.results);
