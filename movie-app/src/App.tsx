@@ -114,6 +114,7 @@ function App() {
             />
           <p>{movie.overview}</p>
           
+          
         </div>
       ))}
     </div>
